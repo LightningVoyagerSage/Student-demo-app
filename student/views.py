@@ -1,17 +1,20 @@
 from django.shortcuts import render ,redirect
-from .models import Student
+from .models import Student, Attendance
 
 def student_home(request):
     
     students_data = Student.objects.all()
+    attendance = Attendance.objects.all()
+   # student_data = student.object.filter()
 
     data = {
-        "students_data": students_data
+        "students_data": students_data,
+        "attendance": attendance
     }
     
     return render(request, "student/student_home.html", data)
 
-def add_student(request):
+def add_student(request): 
 
   if request.method == "POST":
     student_name = request.POST.get("input_name")

@@ -112,10 +112,13 @@
     {% for student in students_data %}
 
     <!-- Card 1 -->
+
+
     <div class="card rounded-2xl p-6">
       <div class="flex items-start justify-between mb-5">
         <div class="flex items-center gap-3">
-          <div class="avatar w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0">A</div>
+          
+    <img src="{% static 'img/logo.png' %}" alt="logo" class="logo">
           <div>
             <h1>
               {{ student.id }}
@@ -144,8 +147,26 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
             </svg>
           </div>
-          <span class="text-gray-400 text-sm">Phone: {{student.phone_number}}</span>
+         
+          <!-- NAYA CODE -->
+<div class="flex items-center gap-3">
+  <div class="text-gray-400 text-sm">Phone: {{student.phone_number}}</div>
+</div>
+
         </div>
+        <!-- Attendance alag row mein -->
+<div class="flex items-center gap-3">
+  <div class="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+    <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+    </svg>
+  </div>
+{% for att in student.attendance_set.all %}
+  <span class="text-gray-400 text-sm">Attendance: {{att.status }}</span>
+  {% empty %}
+  <span class="text-gray-400 text-sm">Attendance: N/A</span>
+  {% endfor %}
+</div>
       </div>
 
 
